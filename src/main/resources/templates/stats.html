@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Page</title>
+    <link rel="stylesheet" href="/styles_nav.css"/>
+    <style>
+        .container_img img{
+            margin-top: 300px;
+            width: 300px;
+            height: 280px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <!-- Отображение баланса и уровня -->
+    <div>
+        <p>Баланс: <span id="balance" th:text="${balance}">0</span> </p>
+        <p>Уровень: <span th:text="${level}">1</span></p>
+    </div>
+</header>
+
+<!-- Основной контент -->
+<main>
+    <!-- Кликабельная картинка в центре -->
+    <div class="container_img" style="text-align: center; margin-top: 50px;">
+        <img src="/images/Hamster.png" alt="Click Me" onclick="incrementBalance()" style="cursor: pointer;"/>
+    </div>
+</main>
+
+<!-- Навигационное меню справа -->
+<nav style="position: fixed; top: 50px; right: 20px;">
+    <ul>
+        <li><a href="/home">Меню</a></li>
+        <li><a href="/buy-business">Купить бизнес</a></li>
+        <li><a href="/statistick">Статистика</a></li>
+        <li><a href="/logout">Выйти</a></li>
+    </ul>
+    <p th:text="${login}"></p>
+</nav>
+
+
+
+<!-- JavaScript для отправки POST-запроса -->
+<script>
+    function incrementBalance() {
+        // Получаем userId из переменной, переданной через Thymeleaf
+        const userId = /*[[${userId}]]*/ '0'; // Замените '0' на реальный ID пользователя
+
+        fetch('/increment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'userId': userId })
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Что-то пошло не так');
+                }
+            })
+            .then(data => {
+                // Обновляем отображаемый баланс на странице
+                document.getElementById('balance').textContent = data.newBalance;
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+    }
+</script>
+
+
+</body>
+</html>

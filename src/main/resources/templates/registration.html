@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="/styles_nav.css"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav {
+            width: 100%;
+            background-color: midnightblue;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: aliceblue;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            background: brown;
+            padding-left: 10px;
+            text-decoration: underline;
+        }
+
+        .registration-container {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-top: 80px; /* Отступ сверху для размещения формы под навигацией */
+        }
+
+        .registration-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .registration-container input[type="text"],
+        .registration-container input[type="password"],
+        .registration-container input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .registration-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .registration-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Навигационное меню сверху -->
+<nav>
+    <a href="/home">Меню</a>
+    <a href="/login">Войти</a>
+    <a href="/registration">Регистрация</a>
+    <a href="/information">Информация</a>
+    <a href="/stats">Статистика</a>
+</nav>
+
+<!-- Форма регистрации по центру под навигацией -->
+<div class="registration-container">
+    <h1>Добро пожаловать на наш сервер</h1>
+
+    <form action="/reg" method="post">
+        <!-- Поле для ввода логина -->
+        <input name="login" type="text" placeholder="Логин" required>
+
+        <!-- Поле для ввода пароля -->
+        <input name="password" type="password" placeholder="Пароль" required>
+
+        <!-- Поле для повторного ввода пароля -->
+        <input name="password2" type="password" placeholder="Повторите пароль" required>
+
+        <!-- Поле для выбора даты рождения -->
+        <input name="date" type="date" required>
+
+        <!-- Кнопка для отправки формы -->
+        <input type="submit" value="Регистрация">
+    </form>
+
+    <div th:if="${message} != null">
+        <p th:text="${message}"></p>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles_nav.css">
+    <title>Авторизация</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            width: 100%;
+            background-color: midnightblue;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .container {
+            background: midnightblue;
+            width: 30%;
+            padding: 10px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 50px; /* Располагает элемент по центру вертикально */
+            margin-bottom: auto;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+        }
+
+        input[type="submit"] {
+            width: 85%;
+            padding: 10px;
+            background-color: #26A421FF;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="/styles_nav.css/">
+</head>
+
+<body>
+
+<nav>
+    <a href="/home">Меню</a>
+    <a href="/login">Войти</a>
+    <a href="/registration">Регистрация</a>
+    <a href="/information">Информация</a>
+    <a href="/Stats">Статистика</a>
+</nav>
+
+<div class="container">
+    <form action="/authorization" method="get">
+        <input name="login" type="text" placeholder="Логин" required/><br><br>
+        <input name="password" type="password" placeholder="Пароль" required /><br><br>
+        <input type="submit" value="Войти"/>
+
+        <div th:if="${message != null}">
+            <p th:text="${message}" th:style="'color:red'"></p>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
